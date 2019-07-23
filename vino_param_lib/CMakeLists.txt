@@ -17,6 +17,9 @@ project(vino_param_lib)
 
 find_package(ament_cmake REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
+find_package(openvino_common REQUIRED)
+
+openvino_coverage()
 
 include_directories(include
   ${yaml_cpp_vendor_DIR}/../../../opt/yaml_cpp_vendor/include)

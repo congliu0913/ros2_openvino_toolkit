@@ -63,6 +63,11 @@ find_package(cv_bridge REQUIRED)
 find_package(vino_param_lib REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
 
+find_package(openvino_common REQUIRED)
+
+openvino_coverage()
+
+
 set(CpuExtension_lib $ENV{CPU_EXTENSION_LIB})
 
 add_library(cpu_extension SHARED IMPORTED)

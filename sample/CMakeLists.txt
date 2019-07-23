@@ -59,6 +59,10 @@ find_package(pipeline_srv_msgs REQUIRED)
 find_package(vino_param_lib REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
 find_package(realsense2 REQUIRED)
+find_package(openvino_common REQUIRED)
+
+openvino_coverage()
+
 
 if(OpenCV_FOUND)
     message(STATUS "OPENCV is enabled")
