@@ -1,0 +1,20 @@
+sudo: required
+dist: bionic
+language: cpp
+compiler: gcc
+notifications:
+  email:
+    recipients:
+      - congx.liu@intel.com
+services:
+  - docker
+script:
+  - docker pull congliu0913/ros2:ropenvino_opencv
+  - docker run --rm -v $PWD:/root/ros2_openvino_toolkit --detach --name openvino_bash congliu0913/ros2:ropenvino_opencv
+    sleep infinity
+  - docker exec --interactive --tty openvino_bash 
+    /root/ros2_openvino_toolkit/script/codecov_build_test.sh
+  - docker exec --interactive --tty openvino_bash 
+    /root/ros2_openvino_toolkit/script/codecov_lcov.bash
+  - ls -lha
+  - bash <(curl -s https://codecov.io/bash) -f projectcoverage.info
