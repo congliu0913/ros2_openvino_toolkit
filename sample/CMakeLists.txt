@@ -308,8 +308,7 @@ if(BUILD_TESTING)
       )
       target_link_libraries(${target}
         dl
-        cpu_extension
-        gflags)
+        cpu_extension)
       ament_target_dependencies(${target}
         "rclcpp"
         "InferenceEngine"
