@@ -13,15 +13,15 @@ jobs:
   # This workflow contains a single job called "build"
   build-test:
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # install ros2 foxy
+    # install ros2 eloquent
     - uses: ros-tooling/setup-ros@0.1.1
       with:
-        required-ros-distributions: foxy
-    - run: "source /opt/ros/foxy/setup.bash && ros2 run --help"
+        required-ros-distributions: eloquent
+    - run: "source /opt/ros/eloquent/setup.bash && ros2 run --help"
