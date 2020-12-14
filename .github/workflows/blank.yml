@@ -25,3 +25,15 @@ jobs:
       with:
         required-ros-distributions: eloquent
     - run: "source /opt/ros/eloquent/setup.bash && ros2 run --help"
+    
+    # install openvino 2020.3
+    - name: install openvino 2020.3
+    - run: |
+        sudo apt update && sudo apt install curl gnupg2 lsb-release
+        curl -s https://apt.repos.intel.com/openvino/2020/GPG-PUB-KEY-INTEL-OPENVINO-2020 |sudo apt-key add -
+        echo "deb https://apt.repos.intel.com/openvino/2020 all main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2020.list
+        sudo apt update
+        sudo apt-cache search openvino
+        sudo apt-get install -y intel-openvino-runtime-ubuntu18-2020.3.194 intel-openvino-ie-samples-2020.3.194 intel-openvino-omz-dev-2020.3.194 intel-openvino-omz-tools-2020.3.341
+        ls -lh /opt/intel/openvino
+        source /opt/intel/openvino/bin/setupvars.sh
