@@ -37,13 +37,21 @@ jobs:
         sudo apt-get install -y intel-openvino-runtime-ubuntu18-2020.3.194 intel-openvino-ie-samples-2020.3.194 intel-openvino-omz-dev-2020.3.194 intel-openvino-omz-tools-2020.3.341
         ls -lh /opt/intel/openvino
         source /opt/intel/openvino/bin/setupvars.sh
-
+        
+    # install librealsense2
+    - name: install librealsense2
+      run: |
+        sudo apt-get update
+        sudo apt-key adv --keyserver keys.gnupg.net --recv-key C8B3A55A6F3EFCDE 
+        sudo sh -c 'echo "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo `lsb_release -cs` main" > /etc/apt/sources.list.d/librealsense.list'
+        sudo apt-get update && sudo apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev
+        
     # build ros2 openvino toolkit
     - name: build ros2 openvino toolkit
       run: |
         mkdir -p ~/ros2_ws/src
         env
-        cp -rf /home/runner/work/ros2_openvino_toolkit/* ~/ros2_ws/src
+        cp -rf ${GITHUB_WORKSPACE} ~/ros2_ws/src
         cd ~/ros2_ws/src
         git clone https://github.com/intel/ros2_object_msgs.git
         cd ~/ros2_ws/
