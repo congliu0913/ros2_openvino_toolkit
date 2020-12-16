@@ -37,3 +37,17 @@ jobs:
         sudo apt-get install -y intel-openvino-runtime-ubuntu18-2020.3.194 intel-openvino-ie-samples-2020.3.194 intel-openvino-omz-dev-2020.3.194 intel-openvino-omz-tools-2020.3.341
         ls -lh /opt/intel/openvino
         source /opt/intel/openvino/bin/setupvars.sh
+
+    # build ros2 openvino toolkit
+    - name: build ros2 openvino toolkit
+      run: |
+        mkdir -p ~/ros2_ws/src
+        env
+        cp -rf /home/runner/work/ros2_openvino_toolkit/* ~/ros2_ws/src
+        cd ~/ros2_ws/src
+        git clone https://github.com/intel/ros2_object_msgs.git
+        cd ~/ros2_ws/
+        source /opt/ros/eloquent/setup.bash
+        source /opt/intel/openvino/bin/setupvars.sh
+        colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+          
